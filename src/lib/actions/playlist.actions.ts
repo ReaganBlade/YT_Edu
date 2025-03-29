@@ -28,10 +28,10 @@ export const createPlaylist = async ({
       {
         user_id,
         name,
-        description,
-        videos,
+        description: description || "",
+        videos: videos || [],
         created_at: new Date().toISOString(),
-        visibility,
+        visibility: visibility || "private",
       }
     );
 
