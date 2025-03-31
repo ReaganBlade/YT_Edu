@@ -3,9 +3,11 @@
 import { signIn, useSession } from "next-auth/react";
 import { saveUserData } from "@/lib/actions/user.actions";
 import { useEffect } from "react";
+import { useRouter, redirect } from "next/navigation";
 
 export default function SignIn() {
   const { data: session } = useSession();
+  const router = useRouter();
 
   useEffect(() => {
     if (session?.user) {
@@ -16,17 +18,15 @@ export default function SignIn() {
         email: session.user.email!,
         avatar: session.user.image!,
       });
+      
+      router.push('/');
     }
   }, [session]);
 
   return (
     <div className="h-screen bg-amber-50 w-full flex justify-center items-center">
       <button
-        onClick={() => {
-          const result = signIn("google");
-          console.log(`This is the Returned Response: ${result}`);
-          return result;
-        }}
+        onClick={() => signIn('google')}
         className="bg-black text-white p-2 rounded"
       >
         Sign in With Google

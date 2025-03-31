@@ -1,5 +1,5 @@
 import { createAdminClient } from "@/appwrite";
-import { appwriteConfig } from "@/appwrite/config";
+import { envConfig } from "@/appwrite/config";
 import { ID, Query } from "node-appwrite";
 import { ParseStringify, handleError } from "../utils";
 
@@ -22,8 +22,8 @@ export const createPlaylist = async ({
 
   try {
     const playlist = await databases.createDocument(
-      appwriteConfig.databaseId as string,
-      appwriteConfig.playlistsCollectionId as string,
+      envConfig.databaseId as string,
+      envConfig.playlistsCollectionId as string,
       ID.unique(),
       {
         user_id,
@@ -46,8 +46,8 @@ export const getPlaylists = async ({ user_id }: { user_id: string }) => {
 
   try {
     const playlists = await databases.listDocuments(
-      appwriteConfig.databaseId as string,
-      appwriteConfig.playlistsCollectionId as string,
+      envConfig.databaseId as string,
+      envConfig.playlistsCollectionId as string,
       [Query.equal("user_id", user_id)]
     );
 
@@ -67,8 +67,8 @@ export const deletePlaylist = async ({
 
   try {
     await databases.deleteDocument(
-      appwriteConfig.databaseId as string,
-      appwriteConfig.playlistsCollectionId as string,
+      envConfig.databaseId as string,
+      envConfig.playlistsCollectionId as string,
       playlist_id
     );
 

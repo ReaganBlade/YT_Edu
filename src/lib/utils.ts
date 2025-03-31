@@ -1,9 +1,14 @@
+import { clsx, type ClassValue } from "clsx"
+import { twMerge } from "tailwind-merge"
 
-export const handleError = (error: any, message: string) => {
-    console.error(message, error);
-    return {error: message};
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs))
 }
 
-export const ParseStringify = ({data} : {data: any}) => {
-    return JSON.parse(JSON.stringify(data));
+export const ParseStringify = (value: unknown) => {
+  return JSON.parse(JSON.stringify(value))
+}
+
+export const handleError = (error: unknown, message: string) => {
+  throw new Error(`${error}: ${message}`);
 }

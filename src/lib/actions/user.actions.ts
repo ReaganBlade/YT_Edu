@@ -1,7 +1,7 @@
 "use server";
 
 import { createAdminClient } from "@/appwrite";
-import { appwriteConfig } from "@/appwrite/config";
+import { envConfig } from "@/appwrite/config";
 import { ParseStringify, handleError } from "../utils";
 import { ID, Query } from "node-appwrite";
 
@@ -11,6 +11,11 @@ interface saveUserDataProps {
   email: string;
   avatar?: string;
 }
+
+// export const createUser = async ({username, email, password}) => {
+//   const { account } = await createAdminClient();
+  
+// }
 
 export const saveUserData = async ({
   user_id,
@@ -34,8 +39,8 @@ export const saveUserData = async ({
     //     `user_id: ${user_id}\nname: ${name}\nemail: ${email}\navatar: ${avatar}\n`
     // );
     const user = await databases.createDocument(
-      appwriteConfig.databaseId as string,
-      appwriteConfig.userCollectionId as string,
+      envConfig.databaseId as string,
+      envConfig.userCollectionId as string,
       ID.unique(),
       {
         user_id: user_id,
@@ -60,8 +65,8 @@ export const getUserData = async (user_id: string) => {
 
   try {
     const user = await databases.listDocuments(
-      appwriteConfig.databaseId as string,
-      appwriteConfig.userCollectionId as string,
+      envConfig.databaseId as string,
+      envConfig.userCollectionId as string,
       [Query.equal("user_id", user_id)]
     );
 
