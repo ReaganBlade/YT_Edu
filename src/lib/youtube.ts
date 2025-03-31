@@ -3,20 +3,15 @@ import { envConfig } from "@/appwrite/config";
 import { handleError } from "./utils";
 
 export const fetchVideos = async (query: string) => {
-
-  const youtube_base_url =  "https://www.googleapis.com/youtube/v3";
-  // const baseURL = "https://www.googleapis.com/youtube/v3";
-  console.log(`YT URL: ${envConfig.youtubeBaseUrl}`); 
-
-
   try {
-    const response = await axios.get(`${youtube_base_url}/search`, {
+    const response = await axios.get(`${envConfig.youtubeBaseUrl}/search`, {
       params: {
         part: "snippet",
         q: query,
         key: envConfig.ytAPIKey,
         maxResults: 15,
         type: "video",
+        videoCategoryId: 27 // For Education
       },
     });
 

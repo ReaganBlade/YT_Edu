@@ -7,7 +7,6 @@ export const YoutubeSearch = () => {
     const [query, setQuery] = useState("");
     const [videos, setVideos] = useState([]);
 
-
     const handleSearch = async () => {
         const results = await fetchVideos(query);
 

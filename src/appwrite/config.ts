@@ -7,5 +7,5 @@ export const envConfig = {
   playlistsCollectionId:
     process.env.NEXT_PUBLIC_APPWRITE_PLAYLISTS_COLLECTION_ID,
   secretKey: process.env.NEXT_PUBLIC_APPWRITE_SECRET_KEY,
-  youtubeBaseUrl: process.env.GOOGLE_YOUTUBE_BASE_URL
+  youtubeBaseUrl: process.env.NEXT_PUBLIC_YOUTUBE_BASE_URL
 };
